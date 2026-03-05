@@ -1,0 +1,30 @@
+{
+    "title": "Portfolio Website",
+    "description": "A personal portfolio website to showcase my skills.",
+    "idea": "I wanted a portfolio where i can showcase my work. I wanted to build it from scratch to have full control over the design and functionality. The design is inspired by my preference for clean, minimal aesthetics with a neutral color palette. I also wanted to include interactive elements like animations and a blog to share my thoughts and experiences in life and tech.",
+    "status": "active",
+    "startDate": "2026-2-01",
+    "endDate": null,
+    "liveUrl": "",
+    "githubUrl": "",
+    "image": "/project_cover/portfolio.png",
+    "techStack": ["nextjs2", "tailwindcss", "js", "react"],
+    "timeline": [
+        {
+            "date": "December 2025",
+            "title": "Kickoff",
+            "description": "Decide on the tech stack and design direction. Saw multiple portfolios and noted down different inspirations. "
+        },
+        {
+            "date": "January 2026",
+            "title": "Core Pages",
+            "description": "Built the foundations using nextjs, including the home page, projects, and about page. Focused on responsive design and clean UI."
+        },
+        {
+            "date": "February 2026",
+            "title": "Blog System",
+            "description": "Implemented a file-based blog using Markdown with gray-matter for frontmatter parsing and react-syntax-highlighter for code blocks."
+        }
+        
+    ]
+}

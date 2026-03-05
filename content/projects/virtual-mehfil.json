@@ -1,0 +1,39 @@
+{
+    "title": "Virtual Mehfil",
+    "description": "A full-stack web application for hosting virtual mehfils with real-time audio/video streaming, interactive chat, and community gathering features.",
+    "idea": "The idea came from noticing that cultural and spiritual mehfil gatherings — poetry recitations, nasheed sessions, and community events — were largely absent from the digital space. I wanted to build a platform where people can participate in these traditions regardless of where they are in the world. The goal was not just to stream content, but to recreate the intimate, communal feeling of a real mehfil: real-time reactions, synchronized listening, and shared presence.",
+    "status": "active",
+    "startDate": "2024-11-01",
+    "endDate": null,
+    "liveUrl": "https://virtual-mehfil.vercel.app/",
+    "githubUrl": "https://github.com/taufeeq31/Virtual_Mehfil",
+    "image": "/project_cover/mehfil.png",
+    "techStack": ["react", "js", "tailwindcss", "mongodb", "socketio"],
+    "timeline": [
+        {
+            "date": "November 2024",
+            "title": "The Idea",
+            "description": "Conceptualized the platform after noticing a lack of dedicated digital spaces for cultural mehfil gatherings. Sketched out the core features and user flows."
+        },
+        {
+            "date": "December 2024",
+            "title": "Foundation Built",
+            "description": "Set up the project structure with a React frontend, Node.js backend, and MongoDB database. Implemented user authentication and basic room creation."
+        },
+        {
+            "date": "January 2025",
+            "title": "Real-Time Features",
+            "description": "Integrated Socket.IO for real-time chat and signaling. Implemented WebRTC for peer-to-peer audio/video streaming between participants."
+        },
+        {
+            "date": "February 2025",
+            "title": "Beta Testing",
+            "description": "Launched a private beta with a close group of testers. Iterated heavily on UI/UX based on feedback, improving the room management and participant controls."
+        },
+        {
+            "date": "Present",
+            "title": "Active Development",
+            "description": "Continuously improving performance, adding new features like recording support and scheduled mehfils, and scaling the infrastructure to handle more concurrent users."
+        }
+    ]
+}
