@@ -6,6 +6,7 @@ import NavBar from '@/components/NavBar';
 import Mesh from '@/components/Mesh';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from '@vercel/analytics/next';
 
 const playfairDisplay = Playfair_Display({
     variable: '--font-playfair-display',
@@ -72,6 +73,7 @@ export default function RootLayout({ children }) {
                     <Mesh />
                     <main className="flex-1 ">{children}</main>
                     <SpeedInsights />
+                    <Analytics />
                     <Script src="/oneko.js" strategy="lazyOnload" />
                     <Script
                         id="json-ld"
