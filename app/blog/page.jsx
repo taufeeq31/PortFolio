@@ -47,21 +47,18 @@ export default function BlogListPage() {
                     </p>
                     <div className="mt-6 h-px w-full bg-neutral-200 dark:bg-neutral-700" />
                 </div>
-                <div className="grid grid-cols-1 place-items-center sm:grid-cols-2 lg:grid-cols-3 gap-8 gap-y-20">
-                    {blogPosts.length === 0 ? (
-                        <p className="text-neutral-500">No posts yet. Check back soon!</p>
-                    ) : (
-                        blogPosts.map((post) => (
+                <div className="columns-1 sm:columns-2 lg:columns-3 gap-8">
+                    {blogPosts.map((post) => (
+                        <div key={post.slug} className="mb-10 break-inside-avoid">
                             <BlogItem
-                                key={post.slug}
                                 title={post.title}
                                 description={post.description}
                                 category={post.category}
                                 image={post.image}
                                 slug={post.slug}
                             />
-                        ))
-                    )}
+                        </div>
+                    ))}
                 </div>
             </main>
         </div>
