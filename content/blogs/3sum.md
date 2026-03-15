@@ -15,7 +15,7 @@ The problem is often asked in coding interviews and is a great way to test your 
 ### Mental Model
 Imagine you have a list of numbers `[-1,0,1,2,-1,-4]` and you want to find three numbers that add up to zero
 1. First, you sort the list to make it easier to find pairs that sum up to a specific value.
-2. Then, you fix one number (`i`) and use two pointers (`left` and `right`) to find pairs that sum up to the negative of the fixed number.
+2. Then, you fix one number (`i`) and use two pointers (`left` and `right`) to find pairs that sum up to the negative of the fixed number. eg: if the fixed number is `-1`, you want to find pairs that sum up to `1` (because `-1 + 1 = 0`).
 3. You move the pointers based on whether the sum is less than, greater than, or equal to zero, and you also skip duplicates to ensure unique triplets.
 
 ### Step 1: Sort the Array
