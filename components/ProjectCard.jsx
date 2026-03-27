@@ -16,7 +16,7 @@ const ProjectCard = ({ title, description, image, techStack = [], slug }) => {
                         src={image}
                         alt={title}
                         fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        className="object-contain transition-transform duration-500 group-hover:scale-105"
                     />
                 ) : (
                     <div className="text-neutral-400 dark:text-neutral-500 font-medium">

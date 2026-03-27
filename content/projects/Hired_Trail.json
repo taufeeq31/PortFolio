@@ -1,0 +1,29 @@
+{
+    "title": "Hired Trail",
+    "description": "A full stack web application to track job applications, manage resumes, and organize interview schedules. It provides a centralized platform for job seekers to stay organized and efficient in their job search process.",
+    "idea": "The idea came after realizing how chaotic and disorganized the job search process can be. I wanted to create a tool that would help job seekers keep track of their applications, manage their resumes, and stay on top of interview schedules. The goal was to provide a simple yet powerful platform that would make the job search process more manageable and less stressful.",
+    "status": "active",
+    "startDate": "2026-03-26",
+    "endDate": "2026-03-29",
+    "liveUrl": "https://hiredtrail.vercel.app/",
+    "githubUrl": "https://github.com/taufeeq31/Job_Pipeline",
+    "image": "/project_cover/hired_trail.png",
+    "techStack": ["react", "nextjs2", "js", "tailwindcss"],
+    "timeline": [
+        {
+            "date": "February 2026",
+            "title": "The Idea",
+            "description": "After searching through various job tracking tools and finding them either too complex or too basic, I decided to create Hired Trail. I outlined the core features and user experience I wanted to achieve."
+        },
+        {
+            "date": "March 2026",
+            "title": "Development Phase",
+            "description": "Started building the application using Next.js for the frontend and backend. Implement simple application tracking features, resume mabagement, and interview scheduling functionalities. Focused on creating a clean and intuitive user interface with Tailwind CSS."
+        },
+        {
+            "date": "March 29, 2026",
+            "title": "Launch",
+            "description": "Launched Hired Trail to the public. Gathered feedback from early users and started planning for future updates and improvements based on their suggestions."
+        }
+    ]
+}

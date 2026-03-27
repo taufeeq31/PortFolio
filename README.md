@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Muhammad Taufeeq Portfolio
 
-## Getting Started
+A personal portfolio built with Next.js App Router, featuring project case studies, markdown-based blogs, contact form integration, dark mode, and SEO-friendly metadata.
 
-First, run the development server:
+## Highlights
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Modern portfolio UI with animated interactions and responsive layout
+- Project showcase driven by local JSON content files
+- Blog system powered by Markdown + frontmatter
+- Dynamic project and blog detail pages with static params generation
+- Syntax-highlighted code blocks in blog posts
+- Theme switching with `next-themes`
+- SEO basics included:
+    - route-level metadata
+    - Open Graph / Twitter tags
+    - `robots.txt` and `sitemap.xml`
+    - JSON-LD person schema
+- Vercel Analytics + Speed Insights integration
+
+## Tech Stack
+
+- Framework: Next.js 16 (App Router)o
+- Language: JavaScript / JSX
+- UI: Tailwind CSS v4, custom components, Framer Motion
+- Content parsing: `gray-matter`, `react-markdown`, `rehype-raw`
+- Code highlighting: `react-syntax-highlighter`
+- Theming: `next-themes`
+- Icons: `lucide-react`, `tech-stack-icons`
+
+## Routes
+
+- `/` - Home
+- `/projects` - Project listing
+- `/projects/[slug]` - Project detail page
+- `/blog` - Blog listing
+- `/blog/[slug]` - Blog detail page
+- `/contact` - Contact page
+- `/privacy` - Privacy policy
+
+## Project Structure
+
+```text
+app/                 # Next.js routes and layouts
+components/          # Reusable UI components
+content/blogs/       # Markdown blog posts
+content/projects/    # JSON project case studies
+lib/                 # Utilities and tech metadata
+public/              # Static assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## THANKS FOR VISITING!
