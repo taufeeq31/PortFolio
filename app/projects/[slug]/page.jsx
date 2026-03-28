@@ -57,7 +57,7 @@ export default async function ProjectPage({ params }) {
     const endLabel = project.endDate ? formatDate(project.endDate) : 'Present';
 
     return (
-        <main className="mx-auto max-w-4xl px-8 py-8  mb-20 bg-white rounded-2xl border border-neutral-200 dark:border-neutral-700 mt-20 shadow-md">
+        <main className="mx-auto max-w-4xl px-8 py-8  mb-20 bg-white rounded-2xl border border-neutral-200 dark:bg-neutral-900 dark:border-neutral-700 mt-20 shadow-md ">
             {/* Back */}
             <Link
                 href="/projects"
@@ -136,12 +136,7 @@ export default async function ProjectPage({ params }) {
             {/* Cover Image */}
             {project.image && (
                 <div className="relative w-full h-64 sm:h-96 overflow-hidden border border-neutral-200 dark:border-neutral-700 mb-16">
-                    <Image
-                        src={project.image}
-                        alt={project.title}
-                        fill
-                        className="object-cover"
-                    />
+                    <Image src={project.image} alt={project.title} fill className="object-cover" />
                 </div>
             )}
 

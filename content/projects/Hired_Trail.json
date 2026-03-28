@@ -5,7 +5,7 @@
     "status": "active",
     "startDate": "2026-03-26",
     "endDate": "2026-03-29",
-    "liveUrl": "https://hiredtrail.vercel.app/",
+    "liveUrl": "https://hiredtrail.vercel.app/home",
     "githubUrl": "https://github.com/taufeeq31/Job_Pipeline",
     "image": "/project_cover/hired_trail.png",
     "techStack": ["react", "nextjs2", "js", "tailwindcss"],
