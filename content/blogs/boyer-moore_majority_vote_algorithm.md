@@ -1,165 +1,268 @@
 ---
-title: "Boyer-Moore Majority Vote Algorithm for (n/3)"
-date: "2026-03-11"
+title: "Boyer Moore Voting Algorithm Explained"
+date: "2026-04-22"
 category: "Algorithms"
-description: "A simple, visual guide to solving the Boyer-Moore Majority Vote problem in O(n) time."
-image : "/blog_cover/majority_element_ii.png"
+description: "Learn the Boyer Moore Voting Algorithm with intuition, dry run, and C++ implementation in O(n) time and O(1) space."
+image: "/blog_cover/boyer_moore.png"
 ---
 
-Here is the link problem statement for the **<a href="https://leetcode.com/problems/majority-element-ii/" target="_blank" rel="noopener noreferrer">Majority Element II</a>** problem.
+## Introduction
 
+The Boyer Moore Voting Algorithm is one of those problems that looks almost magical when you first see it.
 
-The **Boyer-Moore Majority Vote Algorithm** is a powerful technique used to find the majority element in a list. The majority element is the element that appears more than n/3 times in the list.
+You are given an array, and you need to find the **majority element**. The twist is that you must do it in **O(n) time and O(1) space**.
 
-### The Story Behind the Algorithm
-The Boyer-Moore Majority Vote Algorithm was developed by Robert S. Boyer and J Strother Moore in 1981. It is an efficient algorithm that runs in O(n) time and O(1) space, making it ideal for finding the majority element in a list.
+At first, most people think of counting frequencies using a hashmap. That works, but it uses extra space.
 
-### The Analogy
-Think of the algorithm like an election where numbers vote for themselves.
+The real question is:
+**Can we find the majority element without storing counts for every number?**
 
-Each number in the array is a voter supporting its own value as a candidate. The rule is that a winner must get more than `n/3` votes.
+That is exactly what this algorithm solves.
 
-**Important observation:** if a number must have more than `n/3` votes, there can be at most two winners. Because three numbers each having more than `n/3` votes would exceed `n`.
+---
 
-So during the scan we only keep track of **two possible leaders**.
+## Problem Statement
 
-Now the analogy: Imagine a room where all the voters (numbers) are standing. When three voters supporting three different candidates come together, they cancel each other and leave the room. None of them can dominate because they balance each other out.
+Given an array of size `n`, find the element that appears **more than n/2 times**.
 
-Example: If we have the array `[1, 2, 3]`, the voters are:
-- First `1` votes for 1
-- Second `1` votes for 1
-- Third `3` votes for 3
-Each supports a different candidate, so they cancel each other out and leave the room. No candidate can dominate.
+This element is called the **majority element**.
 
-Now another example: If we have the array `[1, 1, 1, 2, 2, 3]`, the voters are:
-- First `1` votes for 1
-- Second `1` votes for 1 and strengthens 1's position
-- Third `1` votes for 1 and strengthens 1's position even more
+Example:
 
-- Now `2` votes for 2 - becoming second candidate.
-- Next `2` votes for 2 and strengthens 2's position
-
-- Finally `3` votes for 3 - but it doesn't have enough support to become a candidate.
-
-Because `1` appear many times, it survives the cancellations.
-
-So the mental model is this:
-- The first pass is candidate filtering through the cancellation process.
-- The second pass is validating of the survivors.
-
-## Boyer-Moore Majority Vote Algorithm
-**Moore’s Voting** works by canceling votes of different elements so that only frequent elements survive.
-
-For normal majority problems ( > n/2 ), we keep the track of one candidate and its votes because only 1 element can break the threshold.
-
-Here the threshold is `n/3`, so we need to keep track of **two candidates** and their votes.
-
-### Step 1: First Pass - Candidate Selection
-Initialize two candidate variables and their corresponding vote counts.
-
-```java
-int candidate1 = 0, candidate2 = 1; // Initialize to different values
-int count1 = 0, count2 = 0;
 ```
 
-### Step 2: Iterate through the array
-For each element in the array, we checks some conditions:
-- If the current element matches `candidate1`, we increment `count1`.
-- Else if it matches `candidate2` we increment `count2`.
+Input: [2,2,1,1,1,2,2]
+Output: 2
 
-If it matches neither candidates:
-- If `count1` is zero, we set `candidate1` to the current element and reset `count1` to 1.
-- Else if `count2` is zero, we set `candidate2` to the current element and reset `count2` to 1.
-
-If both candidates exist and number matches neither:
-- We decrement both `count1` and `count2` because they cancel each other out, this represents the cancellation process.
-
-```java
-for (int ele : nums) {
-    if (ele == candidate1) {
-        count1++;
-    } else if (ele == candidate2) {
-        count2++;
-    } else if (count1 == 0) {
-        candidate1 = ele;
-        count1 = 1;
-    } else if (count2 == 0) {
-        candidate2 = ele;
-        count2 = 1;
-    } else {
-        count1--;
-        count2--;
-    }
-}
 ```
 
-### Step 3: Second Pass - Validation
-After the first pass, we have at most two candidates. Now we need to verify if they actually appear more than `n/3` times in the array.
+Because `2` appears 4 times and `n = 7`, so `4 > 7/2`.
 
-```java
-count1 = 0;
-count2 = 0;
-for (int ele : nums) {
-    if (ele == candidate1) count1++;
-    else if (ele == candidate2) count2++;
-}
-List<Integer> res = new ArrayList<>();
-if (count1 > nums.length / 3) res.add(candidate1);
-if (count2 > nums.length / 3) res.add(candidate2);
-```
+---
 
-## Java Implementation
-Here is the Java implementation of the Boyer-Moore Majority Vote Algorithm for finding elements that appear more than `n/3` times in an array.
-```java
+## Naive Approaches (Quick Revision)
+
+The first approach that comes to mind is brute force.
+
+Check every element and count its frequency.
+This takes O(n²), which is too slow.
+
+A better approach is using a hashmap.
+
+Store frequency of each element while traversing.
+This reduces time to O(n), but space becomes O(n).
+
+We want something better.
+
+---
+
+## Core Intuition
+
+Think of this like an election.
+
+Each number is a candidate.
+We are trying to find the one that has more than half the votes.
+
+Now imagine this:
+
+Whenever you see two different elements, they **cancel each other out**.
+
+So instead of counting everything, we just keep track of a **balance**.
+
+- Same element → increase support
+- Different element → decrease support
+
+The key idea is:
+
+> If an element appears more than n/2 times, it **cannot be fully cancelled out**.
+
+No matter how many different elements try to cancel it, it will always remain at the end.
+
+---
+
+## Algorithm Idea
+
+We maintain two things:
+
+- `candidate`
+- `count`
+
+Process:
+
+1. Start with `count = 0`
+2. Traverse the array
+3. If `count == 0`, pick current element as candidate
+4. If current element == candidate → `count++`
+5. Else → `count--`
+
+At the end, the candidate will be the majority element.
+
+---
+
+## Step by Step Dry Run
+
+Let’s take this example:
+
+`[2, 2, 1, 1, 1, 2, 2]`
+
+We track two things: candidate and count.<br>
+
+Start:<br>
+candidate = 0, count = 0<br>
+Now iterate:<br>
+
+See 2<br>
+count == 0 → pick candidate = 2<br>
+count = 1<br>
+
+See 2<br>
+same as candidate → count = 2<br>
+
+See 1<br>
+different → count = 1<br>
+
+See 1<br>
+different → count = 0<br>
+
+See 1<br>
+count == 0 → pick candidate = 1<br>
+count = 1<br>
+
+See 2<br>
+different → count = 0<br>
+
+See 2<br>
+count == 0 → pick candidate = 2<br>
+count = 1<br>
+
+Final candidate = 2<br>
+
+You can clearly see the cancellation happening.<br>
+Different elements reduce the count, same elements strengthen it.<br>
+
+Even after all cancellations, the majority element survives.<br>
+
+---
+
+## C++ Implementation
+
+```cpp
 class Solution {
-    public List<Integer> majorityElement(int[] nums) {
-        int candidate1 = 0, candidate2 = 1;
-        int count1 = 0, count2 = 0;
-        // Finding the potential candidates
-        for(int ele: nums){
-            if(ele == candidate1){
-                count1++;
-            } else if(ele == candidate2){
-                count2++;
-            } else if(count1 == 0){
-                candidate1 = ele;
-                count1 = 1;
-            } else if(count2 == 0){
-                candidate2 = ele;
-                count2 = 1;
+public:
+    int majorityElement(vector<int>& nums) {
+        int candidate = 0;
+        int count = 0;
+
+        for(int num : nums){
+            if(count == 0){
+                candidate = num; // pick new candidate
+            }
+
+            if(num == candidate){
+                count++; // support increases
             } else {
-                count1--;
-                count2--;
+                count--; // cancellation happens
             }
         }
 
-        //Validating the candidates
-        count1 = 0;
-        count2 = 0;
-        for(int ele: nums){
-            if( ele == candidate1 ){
-                count1++;
-            } else if( ele == candidate2 ){
-                count2++;
-            }
-        }
-        //Adding answer to ArrayList
-        int n = nums.length;
-        List<Integer> res = new ArrayList<>();
-        if (count1 > (n / 3) ) res.add(candidate1);
-        if (count2 > (n / 3) ) res.add(candidate2);
-
-        return res;
-
+        return candidate;
     }
+};
+````
+
+---
+
+## Why It Works
+
+The algorithm is based on **pair cancellation**.
+
+Whenever we see two different elements, we remove one occurrence of each.
+
+If a majority element exists:
+
+* It appears more than n/2 times
+* All other elements combined are less than n/2
+* So they cannot fully cancel it
+
+This guarantees that the final candidate is the majority.
+
+---
+
+## Edge Cases
+
+If no majority element exists, this algorithm still returns a candidate.
+
+So in such cases, you need a **second pass** to verify:
+
+```cpp
+int count = 0;
+for(int num : nums){
+    if(num == candidate) count++;
 }
+
+if(count > nums.size()/2) return candidate;
+return -1;
 ```
 
-## Time Complexity
-The time complexity of this algorithm is `O(n)` because we traverse the array twice: once to find the candidates and once to validate them.
+Other cases:
 
-## Space Complexity
-The space complexity is `O(1)` because we are using only a constant amount of extra space to store the candidates and their counts.
+* Single element → always majority
+* All elements same → works fine
+* Mixed elements → depends on condition
 
+---
 
+## Common Mistakes
 
+Many developers misunderstand what this algorithm does.
+
+It does **not** find the most frequent element.
+It only works when a majority element is guaranteed.
+
+Another mistake is skipping the validation step when the problem does not guarantee a majority.
+
+Also, people get confused when `count` becomes zero.
+That just means we reset and start fresh with a new candidate.
+
+---
+
+## Time and Space Complexity
+
+Time Complexity: O(n)
+We traverse the array once.
+
+Space Complexity: O(1)
+No extra storage is used.
+
+Compared to hashmap:
+
+* Same time
+* Much better space
+
+---
+
+## When To Use This
+
+Whenever you see:
+
+* Majority element (> n/2)
+* Constraint on space
+* Linear time requirement
+
+This pattern should click instantly.
+
+It also extends to problems like:
+
+* Elements appearing more than n/3 times
+
+---
+
+## Conclusion
+
+The Boyer Moore Voting Algorithm works because of a simple but powerful idea:
+
+**Majority elements cannot be cancelled out completely.**
+
+Once you understand the cancellation intuition, the code becomes obvious.
+
+This is less about memorizing and more about thinking in terms of balance.
