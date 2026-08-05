@@ -25,11 +25,11 @@ const socials = [
         description: 'Thoughts on dev & design',
     },
     {
-        label: 'Email',
-        handle: 'dev.taufeeq@gmail.com',
-        href: 'https://mail.google.com/mail/?view=cm&fs=1&to=dev.taufeeq@gmail.com',
-        icon: Mail,
-        description: 'Direct inbox — fastest way to reach me',
+        label: 'Leetcode',
+        handle: 'mohdtaufiq',
+        href: 'https://leetcode.com/u/mohdtaufiq/',
+        icon: '/leetcode_icon.svg',
+        description: 'Exploring the world of Algorithms',
     },
 ];
 
@@ -108,10 +108,18 @@ const Social = () => {
                                 className="group flex items-center gap-3 p-3 border border-neutral-200 dark:border-neutral-700 hover:border-neutral-900 dark:hover:border-neutral-400 hover:shadow-[-4px_4px_0px_#000] dark:hover:shadow-[-4px_4px_0px_#fff] transition-all"
                             >
                                 <div className="flex items-center justify-center w-8 h-8 border border-neutral-200 dark:border-neutral-700 bg-neutral-50 dark:bg-neutral-800 shrink-0 group-hover:bg-neutral-900 group-hover:border-neutral-900 transition-colors">
-                                    <Icon
-                                        style={{ fontSize: '16px' }}
-                                        className="text-neutral-600 group-hover:text-white transition-colors"
-                                    />
+                                    {typeof Icon === 'string' ? (
+                                        <img
+                                            src={Icon}
+                                            alt={label}
+                                            className="w-4 h-4 group-hover:brightness-0 group-hover:invert transition-all"
+                                        />
+                                    ) : (
+                                        <Icon
+                                            style={{ fontSize: '16px' }}
+                                            className="text-neutral-600 group-hover:text-white transition-colors"
+                                        />
+                                    )}
                                 </div>
                                 <div className="flex flex-col min-w-0">
                                     <span className="text-xs font-semibold text-neutral-900 dark:text-white font-outfit">

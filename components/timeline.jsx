@@ -12,6 +12,7 @@ import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import Typography from '@mui/material/Typography';
 import JavascriptIcon from '@mui/icons-material/Javascript';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import CodeIcon from '@mui/icons-material/Code';
 
 
 const milestones = [
@@ -51,10 +52,18 @@ const milestones = [
         description: 'Developed and deployed my first full-stack web application.',
     },
     {
-        year: '2025 — Present',
+        year: '2026 — April',
         icon: <RocketLaunchIcon />,
         color: 'secondary',
-        title: 'Open Source Contributions',
+        title: 'Post LLM Training Intern',
+        description:
+            'Joined Ethara AI where i evaluated multimodel outputs for instruction following to support datasets pipeline.',
+    },
+    {
+        year: '2026 — Present',
+        icon: <CodeIcon />,
+        color: 'primary',
+        title: 'Open Source Exploration',
         description:
             'Actively contributing to open source projects and maintaining personal repositories.',
     },

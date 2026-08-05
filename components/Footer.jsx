@@ -41,6 +41,18 @@ const Footer = () => {
                     >
                         <Mail size={18} />
                     </a>
+                    <a
+                        href="https://leetcode.com/u/mohdtaufiq/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-neutral-400 dark:text-neutral-500 hover:text-black dark:hover:text-white transition-colors"
+                    >
+                        <img
+                            src="/leetcode_icon.svg"
+                            alt="LeetCode"
+                            className="w-[18px] h-[18px] dark:invert hover:opacity-80 transition"
+                        />
+                    </a>
                 </div>
             </div>
         </footer>
